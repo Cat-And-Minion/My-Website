@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <!-- Topbar  -->
+    <!-- 1. Topbar -->
     <div class="topbar">
         <div class="topbar-left">
             <span>Hello nice people, welcome to my blog</span>
@@ -30,7 +30,7 @@
         <div class="logo-sub">PERSONAL BLOG</div>
     </div>
 
-    <!-- 3. Menu Bar  -->
+    <!-- 3. Menu Bar -->
     <div class="navbar">
         <div class="nav-item active">HOME ▾</div>
         <div class="nav-item">FEATURED</div>
@@ -41,25 +41,80 @@
 
     <!-- 4. Hero Banner -->
     <div class="hero-banner">
-        <!-- Arrow Left/Right -->
-        <div class="slider-arrow left">❮</div>
-        <div class="slider-arrow right">❯</div>
-
-        <!-- content on image -->
-        <div class="hero-card">
-            <div class="tag">TRAVEL</div>
-            <div class="title">Travel and Live</div>
-            <div class="date">day/month/year...</div>
+        <!-- List of Image Slides -->
+        <div class="slide active">
+            <img src="https://lh3.googleusercontent.com/d/1Mia28hwR7sOxaEmh3FFVxmrMszFv-1rd" alt="Travel and Live 1">
+            <div class="hero-card">
+                <div class="tag">TRAVEL</div>
+                <div class="title">Nam Cat Tien National Park</div>
+                <div class="date">day/month/year...</div>
+            </div>
         </div>
 
-        <!-- Dots for page -->
+        <div class="slide">
+            <img src="https://lh3.googleusercontent.com/d/1L1ggv1ScTo_fNgEKmtv4tZeNkrAS61ON" alt="Travel and Live 2">
+            <div class="hero-card">
+                <div class="tag">LIFESTYLE</div>
+                <div class="title">Quy Nhon</div>
+                <div class="date">day/month/year...</div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://lh3.googleusercontent.com/d/1VyUseHA_oJo_2GPEy2aRdWwMDC_PtYPj" alt="Travel and Live 3">
+            <div class="hero-card">
+                <div class="tag">NATURE</div>
+                <div class="title">Hoi An Old Town</div>
+                <div class="date">day/month/year...</div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation Arrows -->
+        <div class="slider-arrow left" onclick="changeSlide(-1)">❮</div>
+        <div class="slider-arrow right" onclick="changeSlide(1)">❯</div>
+
+        <!-- Slider Navigation Dots -->
         <div class="slider-dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+            <div class="dot active" onclick="currentSlide(0)"></div>
+            <div class="dot" onclick="currentSlide(1)"></div>
+            <div class="dot" onclick="currentSlide(2)"></div>
         </div>
     </div>
 
+    <!-- JavaScript code for slide transition handling -->
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.hero-banner .slide');
+        const dots = document.querySelectorAll('.slider-dots .dot');
+
+        function showSlide(index) {
+            if (index >= slides.length) { slideIndex = 0; }
+            else if (index < 0) { slideIndex = slides.length - 1; }
+            else { slideIndex = index; }
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[slideIndex].classList.add('active');
+            if (dots[slideIndex]) {
+                dots[slideIndex].classList.add('active');
+            }
+        }
+
+        // Change slide on left/right arrow click
+        function changeSlide(step) {
+            showSlide(slideIndex + step);
+        }
+
+        // Jump directly to slide on dot click
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-play slides every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
 </body>
 </html>
