@@ -81,6 +81,11 @@ body {
     letter-spacing: 1px;
 }
 
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .nav-item {
     cursor: pointer;
     color: #333333;
